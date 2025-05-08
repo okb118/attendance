@@ -1,0 +1,9 @@
+# Python 仮想環境
+venv/
+
+# Python キャッシュ
+__pycache__/
+*.pyc
+
+# SQLite データベース（開発用なら）
+logs.db
