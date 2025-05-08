@@ -7,3 +7,4 @@ __pycache__/
 
 # SQLite データベース（開発用なら）
 logs.db
+

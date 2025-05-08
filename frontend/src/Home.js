@@ -1,5 +1,4 @@
-// Home.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Calendar from "./Calendar";
 
 function Home({ username, onLogout }) {
@@ -8,22 +7,22 @@ function Home({ username, onLogout }) {
   const [time, setTime] = useState("");
   const [logs, setLogs] = useState([]);
 
-  const fetchStatusList = async () => {
+  const fetchStatusList = useCallback(async () => {
     const res = await fetch("http://localhost:8000/status");
     const data = await res.json();
     setStatusList(data);
-  };
+  }, []);
 
-  const fetchLogs = async () => {
+  const fetchLogs = useCallback(async () => {
     const res = await fetch(`http://localhost:8000/logs?username=${username}`);
     const data = await res.json();
     setLogs(data);
-  };
+  }, [username]);
 
   useEffect(() => {
     fetchStatusList();
     fetchLogs();
-  }, [username]);
+  }, [fetchStatusList, fetchLogs]); // ← 正しく依存関係を指定
 
   useEffect(() => {
     const timer = setInterval(() => {
