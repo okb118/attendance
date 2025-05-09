@@ -7,7 +7,7 @@ function Admin({ admin, onLogout }) {
 
   const loadUsers = async () => {
     try {
-      const res = await fetch(`http://localhost:8000/admin/users?admin=${admin}`);
+      const res = await fetch(`http://localhost:5000/admin/users?admin=${admin}`);
       const data = await res.json();
       setUsers(Array.isArray(data) ? data : []);
     } catch (err) {
@@ -21,7 +21,7 @@ function Admin({ admin, onLogout }) {
 
   const handleCreate = async () => {
     try {
-      const res = await fetch(`http://localhost:8000/admin/users?admin=${admin}`, {
+      const res = await fetch(`http://localhost:5000/admin/users?admin=${admin}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: newUser, password: newPass }),
@@ -41,7 +41,7 @@ function Admin({ admin, onLogout }) {
 
   const handleDelete = async (username) => {
     try {
-      const res = await fetch(`http://localhost:8000/admin/users/${username}?admin=${admin}`, {
+      const res = await fetch(`http://localhost:5000/admin/users/${username}?admin=${admin}`, {
         method: "DELETE",
       });
       if (!res.ok) {
