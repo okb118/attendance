@@ -20,7 +20,7 @@ function Calendar({ username }) {
 
   const fetchEvents = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/events`);
+      const res = await fetch(`http://localhost:5001/events`);
       const data = await res.json();
       const formatted = data.map((e) => ({
         ...e,
@@ -36,7 +36,7 @@ function Calendar({ username }) {
 
   const handleCreateEvent = async () => {
     try {
-      const res = await fetch("http://localhost:5000/events", {
+      const res = await fetch("http://localhost:5001/events", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -65,7 +65,7 @@ function Calendar({ username }) {
 
   const handleDelete = async (eventId) => {
     try {
-      await fetch(`http://localhost:5000/events/${eventId}`, {
+      await fetch(`http://localhost:5001/events/${eventId}`, {
         method: "DELETE",
       });
       fetchEvents();

@@ -8,13 +8,13 @@ function Home({ username, onLogout }) {
   const [logs, setLogs] = useState([]);
 
   const fetchStatusList = useCallback(async () => {
-    const res = await fetch("http://localhost:5000/status");
+    const res = await fetch("http://localhost:5001/status");
     const data = await res.json();
     setStatusList(data);
   }, []);
 
   const fetchLogs = useCallback(async () => {
-    const res = await fetch(`http://localhost:5000/logs?username=${username}`);
+    const res = await fetch(`http://localhost:5001/logs?username=${username}`);
     const data = await res.json();
     setLogs(data);
   }, [username]);
@@ -32,7 +32,7 @@ function Home({ username, onLogout }) {
   }, []);
 
   const handleClock = async (type) => {
-    const res = await fetch(`http://localhost:5000/clock-${type}?username=${username}`, {
+    const res = await fetch(`http://localhost:5001/clock-${type}?username=${username}`, {
       method: "POST",
     });
     const data = await res.json();
