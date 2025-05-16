@@ -1,20 +1,20 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 
 function Register({ onBack }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [msg, setMsg] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [msg, setMsg] = useState('');
 
   const handleRegister = async () => {
     try {
-      const res = await fetch("http://localhost:5001/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail);
-      setMsg("登録完了！ログインしてください");
+      setMsg('登録完了！ログインしてください');
     } catch (err) {
       setMsg(err.message);
     }

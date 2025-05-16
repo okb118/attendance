@@ -1,17 +1,15 @@
-// App.js
 import React, { useState } from "react";
-import Login from "./Login";
-import Register from "./Register";
-import Home from "./Home";
-import Admin from "./Admin";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Home from "./components/Home";
 
 function App() {
   const [username, setUsername] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
-  const handleLogin = async (user, adminFlag) => {
+  const handleLogin = (user, adminFlag) => {
     setUsername(user);
     setIsAdmin(adminFlag);
     setIsLoggedIn(true);
@@ -19,28 +17,19 @@ function App() {
 
   const handleLogout = () => {
     setUsername("");
-    setIsAdmin(false);
     setIsLoggedIn(false);
+    setIsAdmin(false);
   };
 
-  const handleRegister = () => setShowRegister(true);
-  const handleBackToLogin = () => setShowRegister(false);
+  if (isLoggedIn) {
+    return <Home username={username} onLogout={handleLogout} />;
+  }
 
-  return (
-    <div>
-      {isLoggedIn ? (
-        isAdmin ? (
-          <Admin admin={username} onLogout={handleLogout} />
-        ) : (
-          <Home username={username} onLogout={handleLogout} />
-        )
-      ) : showRegister ? (
-        <Register onBack={handleBackToLogin} />
-      ) : (
-        <Login onLogin={handleLogin} onRegister={handleRegister} />
-      )}
-    </div>
-  );
+  if (showRegister) {
+    return <Register onBack={() => setShowRegister(false)} />;
+  }
+
+  return <Login onLogin={handleLogin} onRegister={() => setShowRegister(true)} />;
 }
 
 export default App;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function Login({ onLogin, onRegister }) {
   const [username, setUsername] = useState("");
@@ -7,7 +7,7 @@ function Login({ onLogin, onRegister }) {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch("http://localhost:5001/login", {
+      const res = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -23,18 +23,9 @@ function Login({ onLogin, onRegister }) {
   return (
     <div>
       <h2>ログイン</h2>
-      <input
-        placeholder="ユーザー名"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+      <input placeholder="ユーザー名" value={username} onChange={(e) => setUsername(e.target.value)} />
       <br />
-      <input
-        type="password"
-        placeholder="パスワード"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <input type="password" placeholder="パスワード" value={password} onChange={(e) => setPassword(e.target.value)} />
       <br />
       <button onClick={handleLogin}>ログイン</button>
       <button onClick={onRegister}>新規登録</button>
