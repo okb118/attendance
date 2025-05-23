@@ -9,7 +9,7 @@ function Home({ username, onLogout }) {
 
   const fetchStatusList = async () => {
     try {
-      const res = await fetch("http://localhost:5000/status");
+      const res = await fetch("http://localhost:5001/status");
       const data = await res.json();
       setStatusList(data);
     } catch (err) {
@@ -19,7 +19,7 @@ function Home({ username, onLogout }) {
 
   const handleClock = async (type) => {
     try {
-      const res = await fetch(`http://localhost:5000/clock-${type}?username=${username}`, {
+      const res = await fetch(`http://localhost:5001/clock-${type}?username=${username}`, {
         method: "POST",
       });
       const data = await res.json();
