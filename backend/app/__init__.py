@@ -1,20 +1,17 @@
 from flask import Flask
-from flask_cors import CORS
+from flask_cors import CORS  # ← 追加
+from app.db import db
 from app.routes import register_routes
-from app.db import init_db
 
 def create_app():
     app = Flask(__name__)
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///logs.db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-    # CORS設定の強化：methods/headers を明示してトラブル回避
-    CORS(app, resources={r"/*": {
-        "origins": "http://localhost:3000",
-        "supports_credentials": True,
-        "methods": ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"]
-    }})
+    # ★ CORS設定（Reactと同じlocalhost:3000を許可）
+    CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}}, supports_credentials=True)
 
-    init_db()
+    db.init_app(app)
     register_routes(app)
 
     return app

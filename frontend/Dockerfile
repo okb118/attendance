@@ -8,4 +8,6 @@ RUN npm install
 COPY . .
 
 EXPOSE 3000
-CMD ["npm", "start"]
+
+CMD ["sh", "-c", "CHOKIDAR_USEPOLLING=true CHOKIDAR_INTERVAL=500 npm start"]
+

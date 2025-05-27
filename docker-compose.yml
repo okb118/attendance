@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   backend:
     build: ./backend
@@ -11,6 +13,10 @@ services:
     build: ./frontend
     ports:
       - "3000:3000"
+    # node_modules をホストで上書きしないよう除外
     volumes:
       - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - WATCHPACK_POLLING=true
     restart: always

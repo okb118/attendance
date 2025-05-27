@@ -1,4 +1,6 @@
 flask
 flask-cors
 sqlalchemy
+flask_sqlalchemy
 passlib[bcrypt]
+bcrypt==3.2.0

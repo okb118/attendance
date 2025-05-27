@@ -1,0 +1,36 @@
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  background-color: #00264d;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-list li {
+  margin-bottom: 15px;
+}
+
+.sidebar-list a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.sidebar-list a:hover {
+  text-decoration: underline;
+}

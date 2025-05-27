@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Calendar from "./Calendar";
-import StatusList from "./StatusList";
+import StatusList from "../components/StatusList";
+import Sidebar from "../components/Sidebar";
+import "../styles/Sidebar.css";
 
 function Home({ username, onLogout }) {
   const [statusList, setStatusList] = useState([]);
@@ -39,16 +40,19 @@ function Home({ username, onLogout }) {
   }, []);
 
   return (
-    <div>
-      <h2>{username} さん</h2>
-      <p>現在時刻：{time}</p>
-      <button onClick={() => handleClock("in")}>出勤</button>
-      <button onClick={() => handleClock("out")}>退勤</button>
-      <button onClick={onLogout}>ログアウト</button>
-      <p>{message}</p>
+    <div style={{ display: "flex" }}>
+      <Sidebar />
+      <div style={{ marginLeft: "200px", padding: "20px", flex: 1 }}>
+        <h2>{username} さん</h2>
+        <p>現在時刻：{time}</p>
+        <button onClick={() => handleClock("in")}>出勤</button>
+        <button onClick={() => handleClock("out")}>退勤</button>
+        <button onClick={onLogout}>ログアウト</button>
+        <p>{message}</p>
 
-      <StatusList statusList={statusList} />
-      <Calendar username={username} />
+        <StatusList statusList={statusList} />
+
+      </div>
     </div>
   );
 }

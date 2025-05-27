@@ -1,0 +1,72 @@
+.login-container {
+  padding: 40px;
+  font-family: sans-serif;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.login-box {
+  display: flex;
+  gap: 40px;
+}
+
+.login-left, .login-right {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.login-left h3,
+.login-right h3 {
+  margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+
+.checkbox {
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+  margin-bottom: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn.black {
+  background-color: black;
+}
+
+.btn.view-only {
+  background-color: gray;
+}
+
+a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #888;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
